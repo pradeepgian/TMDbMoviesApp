@@ -26,7 +26,7 @@ class LatestMoviesController: UICollectionViewController, UICollectionViewDelega
         collectionView.backgroundColor = .white
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.cellIdentifier)
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
-        collectionView.addSubview(activityIndicator)
+        self.view.addSubview(activityIndicator)
         activityIndicator.centerInSuperview()
         moviesViewModel.fetchLatestMovies()
         latestMoviesViewModelObserver()
@@ -44,7 +44,7 @@ class LatestMoviesController: UICollectionViewController, UICollectionViewDelega
                         self.collectionView.reloadData()
                         break
                     case .error(let error):
-                        self.activityIndicator.stopAnimating()
+                        // Handle error
                         print("Something went wrong \(String(describing: error))")
                         let errorMessage = error.localizedDescription
                         print(errorMessage)

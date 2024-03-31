@@ -26,7 +26,7 @@ class PopularMoviesController: UICollectionViewController, UICollectionViewDeleg
         collectionView.backgroundColor = .white
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.cellIdentifier)
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
-        self.collectionView.addSubview(activityIndicator)
+        self.view.addSubview(activityIndicator)
         activityIndicator.centerInSuperview()
         moviesViewModel.fetchPopularMovies()
         popularMoviesViewModelObserver()
@@ -45,7 +45,6 @@ class PopularMoviesController: UICollectionViewController, UICollectionViewDeleg
                         break
                     case .error(let error):
                         // Handle error
-                        self.activityIndicator.stopAnimating()
                         print("Something went wrong \(String(describing: error))")
                         let errorMessage = error.localizedDescription
                         print(errorMessage)
